@@ -1,0 +1,51 @@
+# SIM v0 Training Configuration
+
+data:
+  # Dataset class to use (import path)
+  # Use "sim.dataset.DummySimDataset" for testing
+  dataset_class_path: "sim.dataset.DummySimDataset"
+
+  # Paths to data splits (ignored for DummySimDataset)
+  train_split_path: "data/train"
+  val_split_path: "data/val"
+
+  # Training hyperparameters
+  batch_size: 32
+  num_workers: 0
+
+model:
+  # LLM configuration
+  # Options: "gpt2", "gpt2-medium", "facebook/opt-125m", etc.
+  llm_name_or_path: "gpt2"
+
+  # Vision encoder (only needed if use_cached_vis_feats=false)
+  vision_encoder_name: null
+
+  # Whether to use cached vision features or raw frames
+  use_cached_vis_feats: true
+
+  # Architecture parameters
+  dv: 768  # Vision feature dimension (must match cached features or vision encoder output)
+  d: 768   # LLM embedding dimension (must match LLM)
+  F: 8     # Number of frames per sample
+  K: 4     # Number of visual tokens after temporal pooling
+
+training:
+  # Training hyperparameters
+  epochs: 10
+  lr: 0.001  # 1e-3 for projector/heads
+  weight_decay: 0.01
+  grad_clip: 1.0
+
+  # Mixed precision training (only works with CUDA)
+  amp: false
+
+  # Reproducibility
+  seed: 42
+
+  # Save checkpoint every epoch (in addition to best/last)
+  save_every_epoch: false
+
+output:
+  # Output directory for checkpoints, logs, and metrics
+  output_dir: "outputs/sim_v0_run"
