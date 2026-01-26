@@ -22,3 +22,7 @@ timm>=0.9.0
 # Development
 pytest>=7.4.0
 black>=23.0.0
+
+# For video processing
+opencv-python-headless==4.13.0.90
+av==16.1.0

@@ -3,7 +3,7 @@
 data:
   # Dataset class to use (import path)
   # Use "sim.dataset.DummySimDataset" for testing
-  dataset_class_path: "sim.dataset.DummySimDataset"
+  dataset_class_path: "example_custom_dataset.RoverRawFramesDataset"
 
   # Paths to data splits (ignored for DummySimDataset)
   train_split_path: "data/train"
